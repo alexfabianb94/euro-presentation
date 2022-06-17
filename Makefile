@@ -1,11 +1,11 @@
 all: presentation.pdf
 
-article.pdf: *.tex */*.tex */*
-	pdflatex -interaction=nonstopmode article.tex
-	bibtex article.aux
-	pdflatex -interaction=nonstopmode article.tex
-	pdflatex -interaction=nonstopmode article.tex
+presentation.pdf: *.tex
+	pdflatex -interaction=nonstopmode presentation.tex
+	bibtex presentation.aux
+	pdflatex -interaction=nonstopmode presentation.tex
+	pdflatex -interaction=nonstopmode presentation.tex
 	rm -rf *.toc *.aux *.bbl *.log *.blg *.synctex.gz *.out *.snm *.nav *.lof *.lot *.spl
 	
 clean:
-	rm -rf *.toc *.aux *.bbl *.log *.blg *.synctex.gz *.out *.snm *.nav *.lof *.lot *.spl article.pdf
+	rm -rf *.toc *.aux *.bbl *.log *.blg *.synctex.gz *.out *.snm *.nav *.lof *.lot *.spl presentation.pdf
