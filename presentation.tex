@@ -127,41 +127,41 @@
       \vspace{1em}
       $y_{i} =
         \begin{cases}
-          1 & \text{Si $i \in N$ se encuentra en la banda}\\
-          0 & \text{En otro caso}
+          1 & \text{if $i \in N$ is in the criminal group}\\
+          0 & \text{otherwise}
         \end{cases}$\\
       $x_{ij} =
         \begin{cases}
-          1 & \text{Si $(i,j) \in A$ se encuentra en el árbol}\\
-          0 & \text{En otro caso}
+          1 & \text{if $(i,j) \in A$ is in the solution}\\
+          0 & \text{otherwise}
         \end{cases}$\\
-      $f_{ij} = \text{Flujo a través del arco $(i,j) \in A$}$
+      $f_{ij} = \text{flow through the arc $(i,j) \in A$}$
     \end{block}
   \end{columns}
 \end{frame}
 
 \begin{frame}
 \frametitle{Steiner tree rational association model (StRAM)}
-\begin{block}{Restricciones}
+\begin{block}{Constraints}
   \begin{scriptsize}
     \begin{columns}[t]
       \column{0.5\textwidth}
       \begin{itemize}
-        \item Asignación de vértices:
+        \item Predecessor constraint:
         \begin{align}
           & \sum_{i \in N} x_{ij} = y_{j} & \forall j \in N \setminus \{s\} \\
-          \intertext{\item Conservación de flujo:}
+          \intertext{\item Flow conservation:}
           & \sum_{i \in N} f_{ij} - \sum_{i \in N} f_{ji} = y_{j} & \forall j \in N \setminus \{s\} \\
-          \intertext{\item Asociación del Flujo:}
+          \intertext{\item Link of the variables:}
           & f_{ij} \leq (|N| - 1) x_{ij} & \forall (i,j) \in A
         \end{align}
       \end{itemize}
       \column{0.5\textwidth}
       \begin{itemize}
-        \item Propensión máxima:
+        \item Maximum criminal propensity:
         \begin{align}
           & \sum_{i \in N} pcg_i y_i \leq \varphi pcg_{max}\\
-          \intertext{\item Dominio de las Variables:}
+          \intertext{\item Variable’s domain:}
           & f_{ij} \geq 0 &\forall (i,j) \in A \\
           & x_{ij} \in \{0,1\} &\forall (i,j) \in A \\
           & y_{i} \in \{0,1\} &\forall i \in N
@@ -184,6 +184,7 @@
     \begin{itemize}
       \item The criminal network was provided by the criminal analysis unit of the Public Prosecutor’s Office of Chile.
       \item The database consists of 1,666 crimes and 77 suspects.
+      \item The dataset contains a criminal group of 12 members.
     \end{itemize}
   \end{block}
   \column{0.5\textwidth}
@@ -194,41 +195,41 @@
     \end{figure}
   \end{columns}
 \end{frame}
-
+\subsection[Test of the effectiveness of $StRAM$]{Test of the effectiveness of $StRAM$}
 \begin{frame}
-\frametitle{The Public Prosecutor’s Office of Chile Dataset}
+\frametitle{Test of the effectiveness of $StRAM$}
 \begin{block}{Results}
+  \footnotesize
   \begin{enumerate}
-    \item R1
-    \item R2
-    \item R3
+    \item The performance of this model is evaluated with the performance of the $LiRAM$\cite{Troncoso201} and $SPA$\cite{xu204} applied between pairs of suspicious individuals.
+    \item $StRAM$ shows a slightly lower performance than $LiRAM$ for each value of $\phi$.
+    \item The confidence intervals intersect, therefore, there is no difference between the results of both models.
   \end{enumerate}
 \end{block}
 \begin{columns}
 \column{0.45\textwidth}
   \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.9\textwidth]{images/comparation.pdf}
+    \includegraphics[width=0.8\textwidth]{images/comparation.pdf}
     \caption{\footnotesize Precision and Recall to StRAM, LiRAM and SPA.}
   \end{figure}
 \column{0.55\textwidth}
   \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.9\textwidth]{images/confidence-interval.pdf}
+    \includegraphics[width=0.8\textwidth]{images/confidence-interval.pdf}
     \caption{\footnotesize F-measure to StRAM, LiRAM and SPA}
   \end{figure}
 \end{columns}
 \end{frame}
 
 \begin{frame}
-\frametitle{The Public Prosecutor’s Office of Chile Dataset}
+\frametitle{Test of the effectiveness of $StRAM$}
 \begin{block}{Results}
   \begin{enumerate}
-    \item R1
-    \item R2
-    \item R3
-    \item R4
-    \item R5
+    \item A statistical hypothesis test of mean difference between the models was applied.
+    \item At a significance level of 0.05, the Shapiro-Wilk test indicates that the results are not normally distributed.
+    \item Levene's test indicates that there is no homogeneity in the variance ($\alpha = 0.05$).
+    \item The nonparametric Kruskal–Wallis test is applied. It is concluded that the results of both models are statistically similar ($\alpha = 0.05$).
   \end{enumerate}
 \end{block}
 \vfill
